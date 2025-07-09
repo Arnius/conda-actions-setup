@@ -24,4 +24,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Prints environment
-      - run: echo '{{env}}'
+        run: echo '{{env}}'

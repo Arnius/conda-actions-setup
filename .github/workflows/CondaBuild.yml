@@ -22,8 +22,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - name: Conda set up
+        uses: conda-incubator/setup-miniconda@v3
 
-      - name: Set up base conda environment
+      - name: Verify conda environment
         run: |
-             C:\Miniconda\condabin\conda.bat env update --file environment.yml --name base
-             C:\Miniconda\condabin\conda.bat init powershell
+          conda env list
+

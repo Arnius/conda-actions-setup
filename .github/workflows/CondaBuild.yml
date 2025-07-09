@@ -23,5 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Prints environment
-        run: echo '${{env}}'
+      - name: Set up base conda environment
+        run: |
+             C:\Miniconda\condabin\conda.bat env update --file environment.yml --name base
+             C:\Miniconda\condabin\conda.bat init powershell

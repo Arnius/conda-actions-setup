@@ -34,6 +34,11 @@ jobs:
           conda config --append channels conda-forge
           conda install conda-build conda-forge-pinning
 
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: x64
+          
       - name: Build test package
         run: |
           conda-build .conda\recipe\

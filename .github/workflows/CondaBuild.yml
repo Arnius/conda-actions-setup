@@ -26,6 +26,10 @@ jobs:
         uses: microsoft/setup-msbuild@v1
         with:
           architecture: x64  # Or x86 if you need 32-bit
+
+      - name: Setup vcvars for cl.exe
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
  
       - name: Conda set up
         uses: conda-incubator/setup-miniconda@v3

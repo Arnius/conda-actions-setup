@@ -14,6 +14,7 @@ package:
 source:
   # use local path or git repository depending on if the build is local or done on CI
   path: "../.."  # [not os.environ.get("CI")]
+  git_url: https://github.com/Arnius/conda-actions-setup.git
 
 build:
   number: 0

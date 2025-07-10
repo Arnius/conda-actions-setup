@@ -26,6 +26,12 @@ requirements:
     - cmake >=3.26.4
     - git
     - ninja
+    - vs2022_win-64
+    - vc14_runtime
+  host:
+    - vc14_runtime
+  run:
+    - vc14_runtime
 
 test:
   commands:

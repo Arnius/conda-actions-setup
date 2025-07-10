@@ -33,7 +33,7 @@ jobs:
       - name: Install conda-build
         run: |
           conda config --append channels conda-forge
-          conda install conda-build conda-forge-pinning vs2022_win-64
+          conda install conda-build conda-forge-pinning
 
       - name: Build test package
         run: |

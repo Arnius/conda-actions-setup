@@ -31,7 +31,9 @@ jobs:
           conda list conda
 
       - name: Install conda-build
-        run: conda install conda-build conda-forge-pinning
+        run: |
+          conda config --append channels conda-forge
+          conda install conda-build conda-forge-pinning
 
       - name: Build test package
         run: conda-build .conda\recipe\

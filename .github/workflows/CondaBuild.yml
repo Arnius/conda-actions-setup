@@ -34,6 +34,13 @@ jobs:
           conda config --append channels conda-forge
           conda install conda-build conda-forge-pinning vs2022_win-64
 
+      - name: Restart test environment
+        run: |
+          conda deactivate
+          conda env list
+          conda activate test
+          conda env list
+
       - name: Build test package
         run: |
           conda-build .conda\recipe\

@@ -22,6 +22,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - name: Set up Visual Studio
+        uses: microsoft/setup-msbuild@v1
+        with:
+          architecture: x64  # Or x86 if you need 32-bit
  
       - name: Conda set up
         uses: conda-incubator/setup-miniconda@v3

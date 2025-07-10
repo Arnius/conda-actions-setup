@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - shell: cmd
-      - run: echo "set"
+        run: set
       # - name: Conda set up
       #   uses: conda-incubator/setup-miniconda@v3
 

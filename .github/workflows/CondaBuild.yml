@@ -36,5 +36,7 @@ jobs:
           conda install conda-build conda-forge-pinning
 
       - name: Build test package
-        run: conda-build .conda\recipe\
+        run: |
+          cd conda-actions-setup
+          conda-build .conda\recipe\
 

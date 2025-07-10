@@ -22,21 +22,28 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Conda set up
-        uses: conda-incubator/setup-miniconda@v3
-
-      - name: Verify conda environment
+      - name: Test directory
         run: |
-          conda env list
-          conda list conda
+          dir
+          cd ${{github.workspace}}
+          dir
+        
+      
+      # - name: Conda set up
+        # uses: conda-incubator/setup-miniconda@v3
 
-      - name: Install conda-build
-        run: |
-          conda config --append channels conda-forge
-          conda install conda-build conda-forge-pinning
+      # - name: Verify conda environment
+      #   run: |
+      #     conda env list
+      #     conda list conda
 
-      - name: Build test package
-        run: |
-          cd conda-actions-setup
-          conda-build .conda\recipe\
+      # - name: Install conda-build
+      #   run: |
+      #     conda config --append channels conda-forge
+      #     conda install conda-build conda-forge-pinning
+
+      # - name: Build test package
+      #   run: |
+      #     cd conda-actions-setup
+      #     conda-build .conda\recipe\
 

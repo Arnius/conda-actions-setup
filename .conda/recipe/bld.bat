@@ -6,10 +6,11 @@ cmake -E make_directory buildconda
 cd buildconda
 
 :: configure
-cmake -G "Ninja" ^
+cmake -G "Visual Studio 17 2022" ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
     -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+    
     ..
 if errorlevel 1 exit 1
 

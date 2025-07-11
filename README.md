@@ -4,4 +4,4 @@ Repository is dedicated to experimenting with Conda environment in GitHub Action
 
 </br>
 
-Currently the GitHub Actions workflow file only supports the conda environment set up process for windows runner. The action is able to set up a test conda environment, install necesary build dependencies, launch conda-build tool to build a custom package, install the package to conda environment and run the test executable from conda environment binary directory.
+Currently the GitHub Actions workflow file only supports the conda environment set up process for windows runner. The action is able to set up a test conda environment, install necessary build dependencies, launch conda-build tool to build a custom package, install the package to conda environment and run the test executable from conda environment binary directory.

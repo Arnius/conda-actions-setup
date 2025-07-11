@@ -22,27 +22,27 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - shell: cmd
-        run: set
+
+      - name: Conda set up
+        uses: conda-incubator/setup-miniconda@v3
+
+      # - shell: cmd
+      #   run: set
 
       - shell: cmd
         run: call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 
-      - shell: cmd
-        run: set
-      # - name: Conda set up
-      #   uses: conda-incubator/setup-miniconda@v3
+      # - shell: cmd
+      #   run: set
 
-      # - name: Verify conda environment
-      #   run: |
-      #     conda env list
+      - name: Verify conda environment
+        run: conda env list
 
-      # - name: Install conda-build
-      #   run: |
-      #     conda config --append channels conda-forge
-      #     conda install conda-build conda-forge-pinning
+      - name: Install conda-build
+        run: |
+          conda config --append channels conda-forge
+          conda install conda-build conda-forge-pinning
           
-      # - name: Build test package
-      #   run: |
-      #     conda-build .conda\recipe\
+      - name: Build test package
+        run: conda-build .conda\recipe\
 

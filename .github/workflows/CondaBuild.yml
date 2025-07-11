@@ -46,3 +46,10 @@ jobs:
       - name: Build test package
         run: conda-build .conda\recipe\
 
+      - name: Install test package
+        run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
+
+      - name: Run custom package
+        run: print-test
+          
+

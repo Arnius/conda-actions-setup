@@ -36,14 +36,14 @@ jobs:
 
       - name: Detect Visual Studio Tools location
         shell: cmd
-        run: |
-          for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%i
-          set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
-          echo %VS_INSTALL_DIR%
+        run: vswhere -products *
+          # for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%i
+          # set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
+          # echo %VS_INSTALL_DIR%
 
-      - name: Set up Visual C/C++ environment
-        shell: cmd
-        run: call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
+      # - name: Set up Visual C/C++ environment
+      #   shell: cmd
+      #   run: call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 
 

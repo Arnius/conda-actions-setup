@@ -39,7 +39,7 @@ jobs:
         run: |
           for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
           set "VS_INSTALL_DIR=%%VS_INSTALL_DIR:installationPath: =%%"
-          echo %VS_INSTALL_DIR%
+          echo ${{VS_INSTALL_DIR}}
           
         # set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
           # echo %VS_INSTALL_DIR%

@@ -36,7 +36,7 @@ jobs:
       - name: Set up Visual C/C++ environment
         shell: cmd
         run: |
-          echo %VS_INSTALL_DIR%
+          set | findstr VS_INSTALL_DIR
           call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
           

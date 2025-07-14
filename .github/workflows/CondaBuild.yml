@@ -1,8 +1,6 @@
-# This is a basic workflow to help you get started with Actions
 
 name: Conda package
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   # push:
@@ -11,16 +9,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: windows-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       # - name: Set up and activate Conda environment
@@ -32,7 +24,7 @@ jobs:
       # - name: Install conda-build
       #   run: |
       #     conda config --append channels conda-forge
-      #     conda install conda-build conda-forge-pinning vs2022_win-64
+      #     conda install conda-build conda-forge-pinning
 
       - name: Detect Visual Studio Tools location
         shell: cmd
@@ -40,16 +32,10 @@ jobs:
           for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
           set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
           set | findstr VS_INSTALL_DIR
-          
-        # set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
-          # echo %VS_INSTALL_DIR%
 
-      # - name: Set up Visual C/C++ environment
-      #   shell: cmd
-      #   run: call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
-
-
-
+      - name: Set up Visual C/C++ environment
+        shell: cmd
+        run: call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
           
       # - name: Build test package

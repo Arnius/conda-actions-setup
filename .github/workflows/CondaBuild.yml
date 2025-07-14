@@ -23,11 +23,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Set up and activate Conda environment
-        uses: conda-incubator/setup-miniconda@v3
+      # - name: Set up and activate Conda environment
+      #   uses: conda-incubator/setup-miniconda@v3
         
-      - name: Verify conda environment
-        run: conda env list
+      # - name: Verify conda environment
+      #   run: conda env list
 
       # - name: Install conda-build
       #   run: |
@@ -36,9 +36,10 @@ jobs:
 
       - name: Detect Visual Studio Tools location
         shell: cmd
-        run: vswhere -products *
-          # for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%i
-          # set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
+        run: |
+          for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%i
+          
+        # set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
           # echo %VS_INSTALL_DIR%
 
       # - name: Set up Visual C/C++ environment

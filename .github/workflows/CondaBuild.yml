@@ -29,30 +29,33 @@ jobs:
       - name: Verify conda environment
         run: conda env list
 
-      - name: Install conda-build
-        run: |
-          conda config --append channels conda-forge
-          conda install conda-build conda-forge-pinning vs2022_win-64
+      # - name: Install conda-build
+      #   run: |
+      #     conda config --append channels conda-forge
+      #     conda install conda-build conda-forge-pinning vs2022_win-64
 
-      - name: Detect MSVC compiler set up batch file path and set up compiler environment
+      - name: Detect Visual Studio Tools location
         shell: cmd
         run: |
-          for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VSINSTALL=
+          for /f "delims=" %i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%i
+          set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: ="
+          echo %VS_INSTALL_DIR%
 
-      - shell: cmd
-        run: call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      - name: Set up Visual C/C++ environment
+        shell: cmd
+        run: call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 
 
 
           
-      - name: Build test package
-        run: conda-build .conda\recipe\
+      # - name: Build test package
+      #   run: conda-build .conda\recipe\
 
-      - name: Install test package
-        run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
+      # - name: Install test package
+      #   run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
 
-      - name: Run custom package
-        run: print-test
+      # - name: Run custom package
+      #   run: print-test
           
 

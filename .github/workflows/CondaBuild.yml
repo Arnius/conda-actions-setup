@@ -26,16 +26,11 @@ jobs:
       #     conda config --append channels conda-forge
       #     conda install conda-build conda-forge-pinning
 
-      - name: Detect Visual Studio Tools location
+      - name: Detect VS path and set up VS C/C++ environment
         shell: cmd
         run: |
           for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
           set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
-          set | findstr VS_INSTALL_DIR
-
-      - name: Set up Visual C/C++ environment
-        shell: cmd
-        run: |
           set | findstr VS_INSTALL_DIR
           call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 

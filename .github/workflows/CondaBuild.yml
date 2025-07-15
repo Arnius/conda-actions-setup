@@ -1,38 +1,25 @@
+ name: Conda package
 
-name: Example Workflow for Environment Files
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
 
-on: push
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  set_and_use_env_vars:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set environment variable
-        run: echo "MY_ENV_VAR=myValue" >> $GITHUB_ENV
-
-      - name: Use environment variable
-        run: |
-          echo "The value of MY_ENV_VAR is $MY_ENV_VAR"
-
-
-# name: Conda package
-
-# on:
-#   # Triggers the workflow on push or pull request events but only for the "main" branch
-#   push:
-#     branches: [ "main" ]
-
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
-
-# jobs:
-#   build:
-#     runs-on: windows-latest
-#     steps:          
+  build:
+    runs-on: windows-latest
+    steps:          
       # - uses: actions/checkout@v4
    
-      # - name: Set up
-      #   run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
+    - name: Set an environment variable using PowerShell
+      run: echo "MY_CUSTOM_VAR=Hello from GitHub Actions on Windows!" >> $env:GITHUB_ENV
+
+    - name: Print the environment variable (PowerShell)
+      run: |
+        Write-Host "The value of MY_CUSTOM_VAR is: $env:MY_CUSTOM_VAR"
 
       # - name: Test print
       #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"

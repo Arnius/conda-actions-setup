@@ -18,29 +18,31 @@ jobs:
       - name: Set up and activate Conda environment
         uses: conda-incubator/setup-miniconda@v3
         
-      # - name: Verify conda environment
-      #   run: conda env list
+      - name: Verify conda environment
+        run: conda env list
 
-      # - name: Install Conda package build tools
-      #   run: |
-      #     conda config --append channels conda-forge
-      #     conda install conda-build conda-forge-pinning
+      - name: Install Conda package build tools
+        run: |
+          conda config --append channels conda-forge
+          conda install conda-build conda-forge-pinning
 
-      # - name: Detect VS path and set up VS C/C++ environment
-      #   shell: cmd
-      #   run: |
-      #     for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
-      #     set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
-      #     call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
-
-
-      - name: Detect built package
+      - name: Detect VS path and set up VS C/C++ environment
         shell: cmd
         run: |
-          echo %CONDA%
-          
-      # - name: Build test package
-      #   run: conda-build .conda\recipe\
+          for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
+          set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
+          call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
+
+      - name: Build test package
+        run: conda-build .conda\recipe\
+
+      - name: Detect built package name
+        shell: cmd
+        run: |
+          set PKG_DIR="%CONDA%\envs\test\conda-bld\win-64
+          for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set PKG_NAME=%%i
+          set "PKG_NAME=%PKG_NAME:* print=print%"
+          echo %PKG_NAME%
 
       # - name: Install test package
       #   run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda

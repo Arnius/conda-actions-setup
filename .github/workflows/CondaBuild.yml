@@ -14,16 +14,16 @@ jobs:
     env:
       GLOBAL: gtest
     steps:          
+
+      - name: Set
+        shell: cmd
+        run: |
+          set PKG=Test.conda
+          echo PKG_NAME=%PKG% >> "%GITHUB_ENV%"
+      - name: Get
+        run: echo "${{ env.PKG_NAME }}"
       # - uses: actions/checkout@v4
-   
-    - name: Set
-      run: echo MY_ENV=test >> "$GITHUB_ENV"
 
-    - name: Get
-      run: echo "${{ env.MY_ENV }}"
-
-      # - name: Test print
-      #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"
       # - name: Set up and activate Conda environment
       #   uses: conda-incubator/setup-miniconda@v3
         
@@ -51,10 +51,10 @@ jobs:
       #     set PKG_DIR="%CONDA%\envs\test\conda-bld\win-64"
       #     for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set TMP_PKG_NAME=%%i
       #     set "TMP_PKG_NAME=%TMP_PKG_NAME:* print=print%"
-      #     echo "PKG_NAME=%TMP_PKG_NAME%" >> "%GITHUB_ENV% 
+      #     echo PKG_NAME=%TMP_PKG_NAME% >> "%GITHUB_ENV%" 
 
       # - name: Test print
-      #   run: echo "%CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%"
+      #   run: echo "${{ env.CONDA }}\envs\test\conda-bld\win-64\${{ env.PKG_NAME }}"
 
       # - name: Install test package
       #   run: conda install "%CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%"

@@ -18,29 +18,34 @@ jobs:
       - name: Set up and activate Conda environment
         uses: conda-incubator/setup-miniconda@v3
         
-      - name: Verify conda environment
-        run: conda env list
+      # - name: Verify conda environment
+      #   run: conda env list
 
-      - name: Install Conda package build tools
-        run: |
-          conda config --append channels conda-forge
-          conda install conda-build conda-forge-pinning
+      # - name: Install Conda package build tools
+      #   run: |
+      #     conda config --append channels conda-forge
+      #     conda install conda-build conda-forge-pinning
 
-      - name: Detect VS path and set up VS C/C++ environment
+      # - name: Detect VS path and set up VS C/C++ environment
+      #   shell: cmd
+      #   run: |
+      #     for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
+      #     set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
+      #     call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
+
+
+      - name: Detect built package
         shell: cmd
         run: |
-          for /f "delims=" %%i in ('vswhere -products * ^| findstr "installationPath: "') do set VS_INSTALL_DIR=%%i
-          set "VS_INSTALL_DIR=%VS_INSTALL_DIR:installationPath: =%"
-          call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
-
+          echo %CONDA%
           
-      - name: Build test package
-        run: conda-build .conda\recipe\
+      # - name: Build test package
+      #   run: conda-build .conda\recipe\
 
-      - name: Install test package
-        run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
+      # - name: Install test package
+      #   run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
 
-      - name: Run custom package
-        run: print-test
+      # - name: Run custom package
+      #   run: print-test
           
 

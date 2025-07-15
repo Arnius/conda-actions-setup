@@ -17,7 +17,7 @@ jobs:
       shell: cmd
       run: |
         set PKG=Test
-        echo PKG_NAME="%PKG%" >> "%GITHUB_ENV%"
+        echo PKG_NAME=%PKG%>> "%GITHUB_ENV%"
 
     - name: Get
       run: echo "${{ env.PKG_NAME }}"

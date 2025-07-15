@@ -20,8 +20,7 @@ jobs:
         echo "MY_ENV=test" >> "%GITHUB_ENV%"
 
     - name: Get
-      shell: cmd
-      run: echo "%MY_ENV%"
+      run: echo "$MY_ENV"
 
       # - name: Test print
       #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"

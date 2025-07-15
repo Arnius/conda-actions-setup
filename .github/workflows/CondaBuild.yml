@@ -14,12 +14,13 @@ jobs:
     steps:          
       # - uses: actions/checkout@v4
    
-    - name: Set an environment variable using PowerShell
-      run: echo "MY_CUSTOM_VAR=Hello from GitHub Actions on Windows!" >> $env:GITHUB_ENV
-
-    - name: Print the environment variable (PowerShell)
+    - name: Set
       run: |
-        Write-Host "The value of MY_CUSTOM_VAR is: $env:MY_CUSTOM_VAR"
+       echo "MY_ENV=test" >> "$GITHUB_ENV"
+
+     - name: Get
+       run: |
+        printf '%s\n' "$MY_ENV"
 
       # - name: Test print
       #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"

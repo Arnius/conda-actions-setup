@@ -1,4 +1,4 @@
- name: Conda package
+name: Conda package
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -19,8 +19,8 @@ jobs:
        echo "MY_ENV=test" >> "$GITHUB_ENV"
 
     - name: Get
-       run: |
-        printf '%s\n' "$MY_ENV"
+      run: |
+       printf '%s\n' "$MY_ENV"
 
       # - name: Test print
       #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"

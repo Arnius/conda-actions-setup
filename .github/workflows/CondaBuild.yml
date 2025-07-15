@@ -44,8 +44,11 @@ jobs:
           set "TMP_PKG_NAME=%TMP_PKG_NAME:* print=print%"
           echo "PKG_NAME=%TMP_PKG_NAME%" >> "%GITHUB_ENV% 
 
+      - name: Test print
+        run: echo "%CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%"
+
       - name: Install test package
-        run: conda install %CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%
+        run: conda install "%CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%"
 
       - name: Run custom package
         run: print-test

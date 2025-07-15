@@ -21,7 +21,7 @@ jobs:
 
     - name: Get
       run: |
-        echo 'Hi ${{ env.MY_ENV }}'
+        echo "$MY_ENV"
 
       # - name: Test print
       #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"

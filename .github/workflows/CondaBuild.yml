@@ -12,14 +12,16 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      TEST: test name
     steps:
       # - uses: actions/checkout@v4
-
-      - name: Set up
-        run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
+   
+      # - name: Set up
+      #   run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
 
       - name: Test print
-        run: echo "${{env.GITHUB_ENV}}"
+        run: echo "${{env.TEST}}"
       # - name: Set up and activate Conda environment
       #   uses: conda-incubator/setup-miniconda@v3
         

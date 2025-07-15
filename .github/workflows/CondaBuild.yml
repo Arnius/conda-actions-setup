@@ -19,7 +19,7 @@ jobs:
         run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
 
       - name: Test print
-        run: echo "$CONDA $PKG_NAME"
+        run: printf '%s %s\n' "$CONDA $PKG_NAME"
       # - name: Set up and activate Conda environment
       #   uses: conda-incubator/setup-miniconda@v3
         

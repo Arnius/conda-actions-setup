@@ -20,7 +20,8 @@ jobs:
         run: echo "MY_ENV_VAR=myValue" >> $GITHUB_ENV
 
       - name: Use environment variable
-        run: echo "The value of MY_ENV_VAR is $MY_ENV_VAR"
+        run: |
+          echo "The value of MY_ENV_VAR is $MY_ENV_VAR"
           
       # - uses: actions/checkout@v4
    

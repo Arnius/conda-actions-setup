@@ -40,14 +40,14 @@ jobs:
         shell: cmd
         run: |
           set PKG_DIR="%CONDA%\envs\test\conda-bld\win-64"
-          for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set PKG_NAME=%%i
-          set "PKG_NAME=%PKG_NAME:* print=print%"
-          echo %PKG_NAME%
+          for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set TMP_PKG_NAME=%%i
+          set "TMP_PKG_NAME=%TMP_PKG_NAME:* print=print%"
+          echo "PKG_NAME=%TMP_PKG_NAME%" >> "%GITHUB_ENV% 
 
-      # - name: Install test package
-      #   run: conda install C:\Miniconda\envs\test\conda-bld\win-64\print-test-1.0.0-h82bb817_0.conda
+      - name: Install test package
+        run: conda install %CONDA%\envs\test\conda-bld\win-64\%PKG_NAME%
 
-      # - name: Run custom package
-      #   run: print-test
+      - name: Run custom package
+        run: print-test
           
 

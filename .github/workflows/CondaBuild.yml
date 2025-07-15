@@ -15,13 +15,20 @@ jobs:
     env:
       TEST: test name
     steps:
+
+      - name: Set environment variable
+        run: echo "MY_ENV_VAR=myValue" >> $GITHUB_ENV
+
+      - name: Use environment variable
+        run: echo "The value of MY_ENV_VAR is $MY_ENV_VAR"
+          
       # - uses: actions/checkout@v4
    
-      - name: Set up
-        run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
+      # - name: Set up
+      #   run: echo "PKG_NAME=name" >> "%GITHUB_ENV%"
 
-      - name: Test print
-        run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"
+      # - name: Test print
+      #   run: echo "${{env.TEST}} ${{github.env.PKG_NAME}}"
       # - name: Set up and activate Conda environment
       #   uses: conda-incubator/setup-miniconda@v3
         

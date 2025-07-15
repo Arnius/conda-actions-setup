@@ -21,7 +21,7 @@ jobs:
 
       - name: Use environment variable
         run: |
-          echo "The value of MY_ENV_VAR is %MY_ENV_VAR%"
+          echo "The value of MY_ENV_VAR is $MY_ENV_VAR"
           
       # - uses: actions/checkout@v4
    

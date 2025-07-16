@@ -1,8 +1,8 @@
 name: Conda package
 
 on:
-  # push:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
   
 jobs:
@@ -30,25 +30,26 @@ jobs:
           call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Build test package
-        run: conda-build .conda\recipe\
-
-      - name: Detect built package name
-        shell: cmd
         run: |
-          set PKG_DIR="%CONDA%\envs\test\conda-bld\win-64"
-          for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set TMP_PKG_NAME=%%i
-          set "TMP_PKG_NAME=%TMP_PKG_NAME:* print=print%"
-          echo PKG_NAME=%TMP_PKG_NAME%>>"%GITHUB_ENV%" 
+          conda-build ${{ github.workspace }}\.conda\recipe\
 
-      - name: Test print
-        run: |
-          echo ${{env.CONDA}}\envs\test\conda-bld\win-64\${{env.PKG_NAME}}
+      # - name: Detect built package name
+      #   shell: cmd
+      #   run: |
+      #     set PKG_DIR="%CONDA%\envs\test\conda-bld\win-64"
+      #     for /f "delims=" %%i in ('dir %PKG_DIR% ^| findstr "print-test"') do set TMP_PKG_NAME=%%i
+      #     set "TMP_PKG_NAME=%TMP_PKG_NAME:* print=print%"
+      #     echo PKG_NAME=%TMP_PKG_NAME%>>"%GITHUB_ENV%" 
 
-      - name: Install test package
-        run: |
-          conda install ${{env.CONDA}}\envs\test\conda-bld\win-64\${{env.PKG_NAME}}
+      # - name: Test print
+      #   run: |
+      #     echo ${{env.CONDA}}\envs\test\conda-bld\win-64\${{env.PKG_NAME}}
 
-      - name: Run custom package
-        run: print-test
+      # - name: Install test package
+      #   run: |
+      #     conda install ${{env.CONDA}}\envs\test\conda-bld\win-64\${{env.PKG_NAME}}
+
+      # - name: Run custom package
+      #   run: print-test
           
 

@@ -1,0 +1,7 @@
+MESSAGE(STATUS "Uninstalling")
+FILE(READ "${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt" manifest)
+STRING(REGEX REPLACE "\n" ";" manifest_lines "${manifest}")
+FOREACH(line ${manifest_lines})
+   MESSAGE(STATUS "Removing ${line}")
+   FILE(REMOVE "${line}")
+ENDFOREACH()

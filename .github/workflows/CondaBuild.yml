@@ -12,7 +12,7 @@ jobs:
       secret: ${{ secrets.TEST_SECRET }}
     steps:          
     - name: Step
-      run: echo "${{ env.secret }}
+      run: echo "${{ env.secret }}"
       
       # - uses: actions/checkout@v4
       

@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      secret: ${{ env.TEST_SECRET }}
+      secret: ${{ secrets.TEST_SECRET }}
     steps:          
     - name: Step
       run: echo "${{ env.secret }}

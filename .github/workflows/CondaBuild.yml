@@ -31,7 +31,7 @@ jobs:
 
       - name: Build test package
         run: |
-          conda-build .conda\recipe\ --debug
+          conda-build .conda\recipe\
 
       # - name: Detect built package name
       #   shell: cmd

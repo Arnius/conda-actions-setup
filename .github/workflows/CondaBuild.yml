@@ -10,6 +10,8 @@ jobs:
     runs-on: windows-latest
     steps: 
       - uses: actions/checkout@v4
+        with:
+          ref: test-branch
       
       - name: Set up and activate Conda environment
         uses: conda-incubator/setup-miniconda@v3

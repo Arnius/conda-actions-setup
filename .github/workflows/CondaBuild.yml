@@ -15,6 +15,9 @@ jobs:
       
       - name: Set up and activate Conda environment
         uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: 3.12
+          numpy-version: 1.26.4
         
       - name: Verify conda environment
         run: conda env list
